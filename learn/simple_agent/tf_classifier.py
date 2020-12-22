@@ -21,16 +21,17 @@ def train_tf_classifier():
     # create a model
     model = tf.keras.models.Sequential([
       tf.keras.layers.Flatten(input_shape=(2,)),
-      tf.keras.layers.Dense(2),
+      tf.keras.layers.Dense(4, activation='sigmoid'),
+      tf.keras.layers.Dense(1, activation='sigmoid'),
     ])
     
     # compile the model
     model.compile(optimizer='adam',
-                  loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                  loss=tf.keras.losses.BinaryCrossentropy(),
                   metrics=['accuracy'])
     
     # train the model
-    model.fit(data, labels, epochs=100)
+    model.fit(data, labels, epochs=20)
     
     # make a prediction
     prediction = model.predict([(0, 0), (0, 1), (1, 0), (1, 1)])
