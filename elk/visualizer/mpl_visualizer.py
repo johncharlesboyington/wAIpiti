@@ -28,8 +28,8 @@ def visualize():
 
     def animate(i):
         text.set_text(data[i].timestamp)
-        point.set_xdata(data[i].lat)
-        point.set_ydata(data[i].long)
+        point.set_xdata(data[i].long)
+        point.set_ydata(data[i].lat)
         return
 
     ani = animation.FuncAnimation(fig, animate, frames=100, interval=250,
